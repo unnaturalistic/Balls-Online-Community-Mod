@@ -56,7 +56,29 @@ const map = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
 ];
-
+//Map Size: 16x9
+const map2 = [
+    [0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0,],
+    [0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 3, 2, 3, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 2, 1, 2, 3, 3, 3,],
+    [0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,],
+];
+const emptymap = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+];
 server.on('connection', c => {
     // Put the client into our client list
     clients.push(c);
@@ -164,12 +186,17 @@ server.on('connection', c => {
                                     } else c.send(JSON.stringify(["message", "/", `That name is already used.`])); // Inform client that the ID is already used
                                 }
                                 break;
+                            case "changemap":
+                                broadcast(JSON.stringify(["map", emptymap]))
+                                broadcast(JSON.stringify(["map", map2]))
+                                break;
                         }
                     }
                 } else {
                     // Slice our message to only 64 characters
                     let message = data[1].slice(0, 64);
                     broadcast(JSON.stringify(["message", id, message.toString()]));
+                    log(id + ": " + message.toString())
                 }
 
                 break;

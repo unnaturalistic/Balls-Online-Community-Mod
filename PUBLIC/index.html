@@ -43,7 +43,10 @@
         <link rel="icon" type="image/x-icon" href="./favicon.png">
     </head>
     <body>
-        <form id="form" style="user-select: none;"><input id="message" maxlength="128" autocomplete="off" placeholder="Message"> <button>✔</button>
+        <form id="form" style="user-select: none;">
+            <input id="message" maxlength="128" autocomplete="off" placeholder="Message"> 
+            <button>Send</button>
+            <!--
             <input type="checkbox" id="cb1">
             <input type="checkbox" id="cb2">
             <input type="checkbox" id="cb3">
@@ -58,7 +61,8 @@
             <input type="checkbox" id="cb5t" checked>
             <input type="checkbox" id="cb6t" checked>
             <input type="checkbox" id="cb7t" checked>
-            <button id="snap">Snap</button>
+            -->
+            <button id="snap">Snap Pic</button>
 
             <button id="bLeft" hidden style="user-select: none; width:64px;">&lt;</button>
             <button id="bDown" hidden style="user-select: none; width:64px;">ˇ</button>
@@ -73,7 +77,7 @@
         <audio id="Notification"><source src="./Notification.ogg" type="audio/ogg"></audio>
 
         <br>
-        <a href="#" onclick="window.open('/help', 'Help', 'width=1280,height=720');">Help</a>
+        <a href="#" onclick="window.open('/docs', 'Docs', 'width=1280,height=720');">Help</a>
         <a href="#" onclick="window.open('/render', 'Render', 'width=450,height=300');">Render</a>
 
         <script defer src="./client.js"></script>

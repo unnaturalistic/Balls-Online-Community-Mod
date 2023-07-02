@@ -30,7 +30,7 @@ if (0 <= window.navigator.appVersion.indexOf("Android") || 0 <= window.navigator
 d.font = "bold 16px Calibri, Carlito, sans-serif";
 d.scale(1, 1);
 let A = new WebSocket(`ws://${aa}`);
-var C = {}, D = w.checked, E = x.checked, oa = y.checked, pa = z.checked, qa = ca.checked, F = da.checked, ra = ea.checked, sa = fa.checked, ta = ha.checked, ua = ia.checked, va = ja.checked, G = ka.checked, H = la.checked, I = 0, wa = 0, J = 0, K = 0, L = !1, M = 60, 
+var C = {}, D = true , E = true, oa = true, pa = true, qa = true, F = true, ra = true, sa = true, ta = true, ua = true, va = true, G = true, H = true, I = 0, wa = 0, J = 0, K = 0, L = !1, M = 60, 
 Draw = (a,h,b,g="#FFFFFF",m=!1,t=16,P=!0,p=!1)=>{
     d.font = `${P ? "bold " : ""}${p ? "italic " : ""}${t}px Calibri`;
     m && (d.fillStyle = "#00000080",
@@ -68,7 +68,7 @@ Draw = (a,h,b,g="#FFFFFF",m=!1,t=16,P=!0,p=!1)=>{
     d.clearRect(0, 0, c.width, c.height);
     d.fillStyle = "gray";
     d.fillRect(0, 0, c.width, c.height);
-    [D,E,oa,pa,qa,F,ra,sa,ta,ua,va,G,H] = [w.checked, x.checked, y.checked, z.checked, ca.checked, da.checked, ea.checked, fa.checked, ha.checked, ia.checked, ja.checked, ka.checked, la.checked];
+    [D,E,oa,pa,qa,F,ra,sa,ta,ua,va,G,H] = [false, false, false, false, false, false, true, true, true, true, true, true, true];
     if (void 0 !== Q[8])
         for (a = 0; 16 > a; a++)
             for (var b = 0; 9 > b; b++)
@@ -112,7 +112,7 @@ Draw = (a,h,b,g="#FFFFFF",m=!1,t=16,P=!0,p=!1)=>{
                 b = Object.keys(O)[a];
                 var t = d.measureText(Object.keys(O)[a]).width / 2
                   , P = 1280 - d.measureText(Object.keys(O)[a]).width / 2;
-                DRAW(b, Math.min(Math.max(g + 8, t), P), Math.min(Math.max(m - 16, 16), 704), "#FFFFFF", F)
+                Draw(b, Math.min(Math.max(g + 8, t), P), Math.min(Math.max(m - 16, 16), 704), "#FFFFFF", F)
             }
         } else
             d.beginPath(),
@@ -128,7 +128,7 @@ Draw = (a,h,b,g="#FFFFFF",m=!1,t=16,P=!0,p=!1)=>{
             G && (g = Object.keys(O)[a],
             m = d.measureText(Object.keys(O)[a]).width / 2,
             t = 1280 - d.measureText(Object.keys(O)[a]).width / 2,
-            DRAW(g, Math.min(Math.max(b.x + 8, m), t), Math.min(Math.max(b.y - 16, 16), 704), "#FFFFFF", F));
+            Draw(g, Math.min(Math.max(b.x + 8, m), t), Math.min(Math.max(b.y - 16, 16), 704), "#FFFFFF", F));
     [xa,ya] = [void 0 === O[B] ? 0 : O[B].x, void 0 === O[B] ? 0 : O[B].y];
     let[,,p,q,,T,U] = [0, 0, 0, 0, 0, !1, !1];
     b = 2 / 15 * h;
@@ -159,31 +159,31 @@ Draw = (a,h,b,g="#FFFFFF",m=!1,t=16,P=!0,p=!1)=>{
         za = C[16] || C.shift ? !0 : !1
     } catch (Ea) {}
     d.textAlign = "left";
-    DRAW("Balls Online", 16, 16, "#EEEEEE");
-    ra && (DRAW(`FPS: ${Math.ceil(M)}`, 16, 32, 30 > M ? 15 > M ? "red" : "yellow" : "lime", D),
-    DRAW(`Ping: ${isNaN(J) ? 0 : J}ms`, 16, 48, 100 < J ? 250 < J ? "red" : "yellow" : "lime", D),
-    DRAW(`Status: ${0 == A.readyState || 3 == A.readyState || 2 == A.readyState ? "offline" : "online"}`, 16, 64, 0 == A.readyState || 3 == A.readyState || 2 == A.readyState ? "red" : "lime", D),
-    DRAW(`Client run: ${Math.floor(I / 1E3)}s`, 16, 96, "#AAAAFF", D),
-    DRAW(`Server run: ${Math.floor((wa + I) / 1E3)}s`, 16, 112, "#AAAAFF", D),
-    DRAW("Version: 0.4.3", 16, 144, "#AAAAFF", D),
-    DRAW(`Platform: ${window.navigator.platform}`, 16, 160, "#AAAAFF", D));
-    sa && (DRAW("Info", 192, 16, "#EEEEEE"),
-    DRAW(`Client ID: ${B}`, 192, 32, "#DDDDDD", E),
-    DRAW(`Client X: ${void 0 === O[B] ? 0 : Math.floor(O[B].x)}`, 192, 48, "#DDDDDD", E),
-    DRAW(`Client Y: ${void 0 === O[B] ? 0 : Math.floor(O[B].y)}`, 192, 64, "#DDDDDD", E),
-    DRAW(`Players: ${Object.keys(O).length}`, 192, 96, "#DDDDDD", E));
+    Draw("Balls Online", 16, 16, "#EEEEEE");
+    ra && (Draw(`FPS: ${Math.ceil(M)}`, 16, 32, 30 > M ? 15 > M ? "red" : "yellow" : "lime", D),
+    Draw(`Ping: ${isNaN(J) ? 0 : J}ms`, 16, 48, 100 < J ? 250 < J ? "red" : "yellow" : "lime", D),
+    Draw(`Status: ${0 == A.readyState || 3 == A.readyState || 2 == A.readyState ? "offline" : "online"}`, 16, 64, 0 == A.readyState || 3 == A.readyState || 2 == A.readyState ? "red" : "lime", D),
+    Draw(`Client run: ${Math.floor(I / 1E3)}s`, 16, 96, "#AAAAFF", D),
+    Draw(`Server run: ${Math.floor((wa + I) / 1E3)}s`, 16, 112, "#AAAAFF", D),
+    Draw("Version: 0.4.3", 16, 144, "#AAAAFF", D),
+    Draw(`Platform: ${window.navigator.platform}`, 16, 160, "#AAAAFF", D));
+    sa && (Draw("Info", 192, 16, "#EEEEEE"),
+    Draw(`Client ID: ${B}`, 192, 32, "#DDDDDD", E),
+    Draw(`Client X: ${void 0 === O[B] ? 0 : Math.floor(O[B].x)}`, 192, 48, "#DDDDDD", E),
+    Draw(`Client Y: ${void 0 === O[B] ? 0 : Math.floor(O[B].y)}`, 192, 64, "#DDDDDD", E),
+    Draw(`Players: ${Object.keys(O).length}`, 192, 96, "#DDDDDD", E));
     if (ta)
-        for (DRAW("Chat", 384, 16, "#EEEEEE"),
+        for (Draw("Chat", 384, 16, "#EEEEEE"),
         a = 0; a < R.length; a++)
-            DRAW(R[a], 384, 16 * (a + 2), a == R.length - 1 ? `${"#DDDD"}${1 == Math.round(S).toString(16).length ? "0" + Math.round(S).toString(16) : Math.round(S).toString(16)}` : "#DDDDDD", oa),
+            Draw(R[a], 384, 16 * (a + 2), a == R.length - 1 ? `${"#DDDD"}${1 == Math.round(S).toString(16).length ? "0" + Math.round(S).toString(16) : Math.round(S).toString(16)}` : "#DDDDDD", oa),
             221 > S && (S += .1 * h);
-    DRAW(Z, 1024, 16, "#EEEEEE", !1, 16, !0, !0);
+    Draw(Z, 1024, 16, "#EEEEEE", !1, 16, !0, !0);
     if (ua)
-        for (DRAW("Player list", 16, 192, "#EEEEEE"),
+        for (Draw("Player list", 16, 192, "#EEEEEE"),
         a = 0; a < Object.keys(O).length; a++)
             b = O[Object.keys(O)[a]],
-            DRAW(`${Object.keys(O)[a]} - ${Math.round(b.x)}, ${Math.round(b.y)}`, 16, 192 + 16 * (a + 1), b.color, pa);
-    va && 0 < W && (DRAW(V, (1280 - d.measureText(V).width) / 2, 360, `#EEEEEE ${255 < W ? "FF" : (1 == Math.round(W).toString(16).length ? "0" : "") + Math.round(W).toString(16)}`, qa),
+            Draw(`${Object.keys(O)[a]} - ${Math.round(b.x)}, ${Math.round(b.y)}`, 16, 192 + 16 * (a + 1), b.color, pa);
+    va && 0 < W && (Draw(V, (1280 - d.measureText(V).width) / 2, 360, `#EEEEEE ${255 < W ? "FF" : (1 == Math.round(W).toString(16).length ? "0" : "") + Math.round(W).toString(16)}`, qa),
     W -= .1 * h);
     requestAnimationFrame(Ba)
 }

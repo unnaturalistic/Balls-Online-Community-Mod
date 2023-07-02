@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                text-align: left;
+                margin-left: 15px;
+                margin-right: auto;
+                background-color: #808080;
+                color: white;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                overflow-x: hidden;
+            }
+
+            canvas {
+                border-style: solid;
+                border-radius: 1px;
+                border-color: #AAAAAA;
+            }
+
+            p {
+                display: inline;
+            }
+
+            h2, h4 {
+                margin-bottom: 5px;
+            }
+
+            th {
+                border-radius: 1px;
+                border-style: ridge;
+            }
+
+            td {
+                border-left-style: ridge;
+                border-right-style: ridge;
+                border-bottom-style: ridge;
+                border-color: #BBBBBB;
+            }
+        </style>
+        <meta name="title" content="Balls Online | Weirdest multiplayer game">
+        <meta name="description" content="Just hang out, and be a ball! What else could you wish for?">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="./">
+        <meta property="og:title" content="Balls Online | Weirdest multiplayer game">
+        <meta property="og:description" content="Just hang out, and be a ball! What else could you wish for?">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./favicon.png">
+    </head>
+    <body>
+        <h1>Balls Online Documentation</h1>
+        <p>You've arrived at the Documentation page.</p> <a href="./">Go back to the game!</a>
+
+        <h2>Protocol</h2>
+        <p>Note: this information is mainly for server creation, not client modification.</p>
+        <br><br>
+        <h4>Data</h4>
+        <p>A packet is a single array with elements. The first element is a string, which acts like a data header - more specifically, data type.</p><br>
+        <p>Example: <b>["type", "hello", 42, 31]</b></p><br>
+        <p><b style="color: yellow;">String</b> <b style="color: limegreen;">Integer</b> <b style="color: orange;">Array</b></p><br><br>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Data</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td><p style="color:yellow;">ID</p></td>
+                <td>The ID or the name of the player. One-time use.</td>
+            </tr>
+            <tr>
+                <td>time</td>
+                <td><p style="color:limegreen;">Time</p></td>
+                <td>The running time of the server. One-time use.</td>
+            </tr>
+            <tr>
+                <td>ping</td>
+                <td>None</td>
+                <td>Pong.</td>
+            </tr>
+            <tr>
+                <td>map</td>
+                <td><p style="color:orange;">2D array</p></td>
+                <td>The 2D array / grid of the map. Must be 16x9. Example below.</td>
+            </tr>
+            <tr>
+                <td>spawn</td>
+                <td><p style="color:yellow;">ID</p>, <p style="color:limegreen;">X</p>, <p style="color:limegreen;">Y</p></td>
+                <td>Spawns a specific player at a specific location.</td>
+            </tr>
+            <tr>
+                <td>despawn</td>
+                <td><p style="color:yellow;">ID</p></td>
+                <td>Depawns a specific player.</td>
+            </tr>
+            <tr>
+                <td>message</td>
+                <td><p style="color:yellow;">ID</p>, <p style="color:yellow;">Message</p></td>
+                <td>Sends a message.</td>
+            </tr>
+            <tr>
+                <td>notification</td>
+                <td><p style="color:yellow;">Message</p></td>
+                <td>Sends a notification.</td>
+            </tr>
+            <tr>
+                <td>move</td>
+                <td><p style="color:yellow;">ID</p>, <p style="color:limegreen;">X</p>, <p style="color:limegreen;">Y</p></td>
+                <td>Moves a specific player to a specific location.</td>
+            </tr>
+            <tr>
+                <td>rename</td>
+                <td><p style="color:yellow;">Old ID</p>, <p style="color:yellow;">ID</p></td>
+                <td>Renames a specific player.</td>
+            </tr>
+            <tr>
+                <td>restart</td>
+                <td>None</td>
+                <td>Restarts a client.</td>
+            </tr>
+            <tr>
+                <td>draw</td>
+                <td><p style="color:limegreen;">X</p>, <p style="color:limegreen;">Y</p></td>
+                <td>Draws a point at a specific location. Does not require a player.</td>
+            </tr>
+        </table>
+        <br>
+        <h4>Map data</h4>
+        <p>The map data is a 2D array, sized 16x9.</p><br>
+        <p>Block list:</p>
+        <li>0 - air</li>
+        <li>1 - door</li>
+        <li>2 - glass</li>
+        <li>3 - wall</li>
+        <p>Air and door blocks are passthrough.</p>
+        <br>
+        <h4>The absolute minimum</h4>
+        <p>Upon connecting to the websocket server, the server sends the <b>id</b> packet, then the <b>time</b> packet, and finally the <b>ping</b> packet.</p><br>
+        <p>The client supports ID saving - so if the client has a name saved, it will send the <b>/name</b> command upon receiving the <b>id</b> packet.</p><br>
+        <p>This is optional, but for the client not to error, the server also sends a <b>spawn</b> packet and a <b>map</b> packet.</p><br>
+        <br>
+        <p>Below is an example server written in <b>Node.JS</b> using the <b>ws</b> module, which supports moving, drawing and chat.</p>
+        <br><br>
+        <script src="https://gist.github.com/dottych/f18879c6e06cdc05095f6dd23ab72d13.js"></script>
+    </body>
+    <h1>
+        Balls Online Community Mod Documentation
+    </h1>
+    <p>This Documentation dives into the server & client mechanics of the mod and how to use them!</p>
+</html>
